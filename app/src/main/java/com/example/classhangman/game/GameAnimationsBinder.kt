@@ -106,15 +106,15 @@ class GameAnimationsBinder(binding: ActivityGameBinding) {
             horizontalBias = 0.5f
             verticalBias = 1f
         }
-        ObjectAnimator.ofFloat(
-            ghost, "scaleX",
-            3f,
-        ).start()
-        ObjectAnimator.ofFloat(
-            ghost, "scaleY",
-            3f,
-        ).apply {
-            start()
-        }
+//        ObjectAnimator.ofFloat(
+//            ghost, "scaleX",
+//            3f,
+////        ).start()
+//        ObjectAnimator.ofFloat(
+//            ghost, "scaleY",
+//            3f,
+//        ).apply {
+////            start()
+//        }
     }
 }
