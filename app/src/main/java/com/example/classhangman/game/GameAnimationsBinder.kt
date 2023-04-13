@@ -12,14 +12,14 @@ import com.example.classhangman.databinding.ActivityGameBinding
 
 class GameAnimationsBinder(binding: ActivityGameBinding) {
 
-    val jailbars = binding.jailbars.children.toList() as ArrayList
-    val allJailbars = binding.jailbars.children.toList()
-    val ghosts = listOf(binding.fantasma1, binding.fantasma2, binding.fantasma3)
+//    val jailbars = binding.jailbars.children.toList() as ArrayList
+//    val allJailbars = binding.jailbars.children.toList()
+//    val ghosts = listOf(binding.fantasma1, binding.fantasma2, binding.fantasma3)
 
     fun startAnimations(): GameAnimationsBinder {
-        ghosts.forEach {
-            ghostAnimation(it)
-        }
+//        ghosts.forEach {
+//            ghostAnimation(it)
+//        }
         return this
     }
 
@@ -41,71 +41,71 @@ class GameAnimationsBinder(binding: ActivityGameBinding) {
         if (!lockAnimation) {
             lockAnimation = true
 
-            val ghost = ghosts.random()
-            ObjectAnimator.ofFloat(
-                ghost, "scaleX",
-                3f,
-            ).apply {
-                repeatCount = ValueAnimator.RESTART
-                repeatMode = ValueAnimator.REVERSE
-                start()
-            }.doOnEnd {
-                lockAnimation = false
-            }
-            ObjectAnimator.ofFloat(
-                ghost, "scaleY",
-                3f,
-            ).apply {
-                repeatCount = ValueAnimator.RESTART
-                repeatMode = ValueAnimator.REVERSE
-                start()
-            }
+//            val ghost = ghosts.random()
+//            ObjectAnimator.ofFloat(
+//                ghost, "scaleX",
+//                3f,
+//            ).apply {
+//                repeatCount = ValueAnimator.RESTART
+//                repeatMode = ValueAnimator.REVERSE
+//                start()
+//            }.doOnEnd {
+//                lockAnimation = false
+//            }
+//            ObjectAnimator.ofFloat(
+//                ghost, "scaleY",
+//                3f,
+//            ).apply {
+//                repeatCount = ValueAnimator.RESTART
+//                repeatMode = ValueAnimator.REVERSE
+//                start()
+//            }
         }
 
         // jailbars animations
-        val jailbar = jailbars.randomOrNull() ?: return
-        jailbars.remove(jailbar)
-        ObjectAnimator.ofFloat(
-            jailbar, "scaleX",
-            0.5f, 2f, 0.5f, 2f, 0.5f, 2f, 0.5f, 2f, 0.5f, 2f,
-        ).apply {
-            duration = 1500
-            repeatCount = ValueAnimator.RESTART
-            repeatMode = ValueAnimator.REVERSE
-            start()
-        }.doOnEnd {
-            ObjectAnimator.ofFloat(
-                jailbar, "alpha",
-                0f
-            ).apply {
-                duration = 2000
-                start()
-            }
-        }
+//        val jailbar = jailbars.randomOrNull() ?: return
+//        jailbars.remove(jailbar)
+//        ObjectAnimator.ofFloat(
+//            jailbar, "scaleX",
+//            0.5f, 2f, 0.5f, 2f, 0.5f, 2f, 0.5f, 2f, 0.5f, 2f,
+//        ).apply {
+//            duration = 1500
+//            repeatCount = ValueAnimator.RESTART
+//            repeatMode = ValueAnimator.REVERSE
+//            start()
+//        }.doOnEnd {
+//            ObjectAnimator.ofFloat(
+//                jailbar, "alpha",
+//                0f
+//            ).apply {
+//                duration = 2000
+//                start()
+//            }
+//        }
     }
 
     fun winGame() {
-        allJailbars.forEach {
-            if (it !in jailbars) {
-                it.alpha = 1f
-                ObjectAnimator.ofFloat(
-                    it, "scaleX",
-                    0f, 1f
-                ).apply {
-                    duration = 1000
-                    start()
-                }
-            }
-        }
+//        allJailbars.forEach {
+//            if (it !in jailbars) {
+//                it.alpha = 1f
+//                ObjectAnimator.ofFloat(
+//                    it, "scaleX",
+//                    0f, 1f
+//                ).apply {
+//                    duration = 1000
+//                    start()
+//                }
+//            }
+//        }
     }
 
     fun loseGame() {
-        val ghost = ghosts.random()
-        ghost.clearAnimation()
-        ghost.updateLayoutParams<ConstraintLayout.LayoutParams> {
-            horizontalBias = 0.5f
-            verticalBias = 1f
-        }
+//        val ghost = ghosts.random()
+//        ghost.clearAnimation()
+//        ghost.updateLayoutParams<ConstraintLayout.LayoutParams> {
+//            horizontalBias = 0.5f
+//            verticalBias = 1f
+//        }
 //        ObjectAnimator.ofFloat(
 //            ghost, "scaleX",
 //            3f,
