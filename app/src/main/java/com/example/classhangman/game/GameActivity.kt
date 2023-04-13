@@ -1,6 +1,7 @@
 package com.example.classhangman.game
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.Toast
@@ -8,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
+import com.example.classhangman.R
 import com.example.classhangman.databinding.ActivityGameBinding
 import com.example.classhangman.ranking.RankingActivity
 
@@ -18,6 +20,8 @@ class GameActivity : AppCompatActivity() {
     val hangmanModelView by viewModels<HangmanModelView>()
     lateinit var animator: GameAnimationsBinder
 
+    lateinit var mediaPlayer: MediaPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,6 +31,8 @@ class GameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         animator = GameAnimationsBinder(binding).startAnimations()
+        mediaPlayer = MediaPlayer.create(this, R.raw.ghosts_song)
+
 
         hangmanModelView.hangman.observe(this) { it ->
             binding.hagmanTextOuput.text = it.word.replace("_", "_ ")
@@ -98,6 +104,7 @@ class GameActivity : AppCompatActivity() {
 
         binding.keyboard.children.forEach { key ->
             key.setOnClickListener {
+                mediaPlayer.start()
                 val letter = resources.getResourceName(it.id).last()
                 hangmanModelView.guessLetter(letter)
             }
