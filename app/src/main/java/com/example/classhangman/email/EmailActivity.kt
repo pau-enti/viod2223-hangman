@@ -1,8 +1,13 @@
 package com.example.classhangman.email
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.classhangman.R
 import com.example.classhangman.databinding.ActivityEmailBinding
 import com.google.android.material.chip.Chip
@@ -40,6 +45,15 @@ class EmailActivity : AppCompatActivity() {
             binding.chipGroup.addView(chip)
             binding.emailToSerachBar.setText("")
         }
+
+        val broadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                Toast.makeText(this@EmailActivity, "Low battery", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        val intentFilter = IntentFilter(Intent.ACTION_BATTERY_LOW)
+        registerReceiver(broadcastReceiver, intentFilter)
 
     }
 }
