@@ -13,6 +13,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NasaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNasaBinding
+    private lateinit var adapter: NasaImagesAdapter
+
     private val theOutside = Retrofit.Builder()
         .baseUrl("https://images-api.nasa.gov/")
         .addConverterFactory(GsonConverterFactory.create())
@@ -24,8 +26,11 @@ class NasaActivity : AppCompatActivity() {
         binding = ActivityNasaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        adapter = NasaImagesAdapter(this)
+        binding.nasaRV.adapter = adapter
+
         val api = theOutside.create(APINasa::class.java)
-        val call = api.searchNasaImages("Milky Way")
+        val call = api.searchNasaImages("supernova")
 
         call.enqueue(object : Callback<NasaImagesCollection> {
             override fun onResponse(
@@ -40,17 +45,7 @@ class NasaActivity : AppCompatActivity() {
                     NasaImage(title, desc, link)
                 }
 
-                imagesList?.forEach {
-                    println(it.link)
-                }
-
-
-//                println(imageLink)
-//
-//                Picasso.Builder(this@NasaActivity)
-//                    .build()
-//                    .load(imageLink)
-//                    .into(binding.imageView)
+                adapter.updateImagesList(imagesList ?: return)
             }
 
             override fun onFailure(call: Call<NasaImagesCollection>, t: Throwable) {
