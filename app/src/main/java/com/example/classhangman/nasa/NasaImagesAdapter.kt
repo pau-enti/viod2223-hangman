@@ -19,9 +19,9 @@ class NasaImagesAdapter(val context: Context) : RecyclerView.Adapter<NasaImagesA
 
     inner class ImageViewHolder(binding: ItemImageNasaBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val title = binding.imageTitle
-        val description = binding.imageDescription
-        val image = binding.imageView
+        val title = binding.nasaImageTitle
+//        val description = binding.imageDescription
+        val image = binding.nasaImage
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -33,7 +33,7 @@ class NasaImagesAdapter(val context: Context) : RecyclerView.Adapter<NasaImagesA
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val img = imagesList[position]
         holder.title.text = img.title
-        holder.description.text = img.description
+//        holder.description.text = img.description
 
         Picasso.Builder(context)
             .build()
